@@ -33,3 +33,4 @@ coverage.out
 
 # Deepwork progress state
 .slim/deepwork/
+.opencode/
