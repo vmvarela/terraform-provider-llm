@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.1.0 (Unreleased)
+## 0.1.0 - 2026-09-07
 
 ### Features
 
@@ -28,5 +28,5 @@ All notable changes to this project will be documented in this file.
 
 ### Notes
 
-- The provider is not yet published to the Terraform Registry, and
-  compatibility with live endpoints is untested.
+- Compatibility with arbitrary live endpoints is untested; this release targets
+  the documented OpenAI-compatible Chat Completions contract.
