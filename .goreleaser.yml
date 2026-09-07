@@ -42,6 +42,9 @@ archives:
       - none*
 
 checksum:
+  extra_files:
+    - glob: 'terraform-registry-manifest.json'
+      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
   name_template: terraform-provider-llm_{{ .Version }}_SHA256SUMS
   algorithm: sha256
 
