@@ -1,0 +1,35 @@
+# Local environment and credentials
+.envrc
+.direnv/
+.env
+.env.*
+!.env.example
+*.tfvars
+*.tfvars.json
+.terraformrc
+terraform.rc
+
+# Terraform working directories, state, and saved plans
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+
+# Provider binaries and build artifacts
+/terraform-provider-llm
+/terraform-provider-llm.exe
+/bin/
+/dist/
+*.test
+coverage.out
+
+# Local editor and operating system files
+.DS_Store
+*.swp
+*~
+
+# Deepwork progress state
+.slim/deepwork/

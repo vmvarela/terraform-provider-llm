@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: MPL-2.0
+
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests (Terraform ${{ matrix.terraform_version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        terraform_version: ['1.13.*', '1.14.*']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ matrix.terraform_version }}
+          terraform_wrapper: false
+      - name: Build
+        run: make build
+      - name: Vet
+        run: make vet
+      - name: Unit tests
+        run: make test TESTARGS=-race
+      - name: Acceptance tests
+        run: make testacc TESTARGS=-race
+      - name: Formatting
+        run: make fmt-check
+
+  generate:
+    name: Generated documentation is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.14.*'
+          terraform_wrapper: false
+      - name: Generate documentation
+        run: make generate
+      - name: Ensure generated files are unchanged
+        run: |
+          changes="$(git status --porcelain -- docs/ examples/)"
+          if [ -n "$changes" ]; then
+            echo "$changes"
+            git diff -- docs/ examples/
+            exit 1
+          fi
