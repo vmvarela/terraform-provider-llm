@@ -3,13 +3,10 @@
 A vendor-neutral Terraform provider for generating and persisting text and JSON
 with OpenAI-compatible LLM APIs.
 
-**Status: implemented, not published.** The provider builds, its lifecycle is
-covered by acceptance tests against local mock endpoints on stable Terraform
-(1.13/1.14), and documentation is generated. It is not released to the
-Terraform Registry; the `vmvarela/llm` address is the intended namespace for
-future publication. Until then, local use requires a
-[development override](https://developer.hashicorp.com/terraform/cli/config/config-file#development-overrides-for-provider-development)
-or a filesystem mirror pointing at the built binary.
+**Status: v0.1.0 published.** The provider builds, its lifecycle is covered by
+acceptance tests against local mock endpoints on stable Terraform (1.13/1.14),
+and documentation is generated. Install it from the Terraform Registry as
+`vmvarela/llm`.
 
 ## Purpose
 
